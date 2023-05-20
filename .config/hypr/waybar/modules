@@ -8,6 +8,20 @@
         "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
     },
 
+    "battery": {
+      "bat": "BAT0",
+      "adapter": "ADP0",
+      "interval": 60,
+      "states": {
+          "warning": 30,
+          "critical": 15
+      },
+      "max-length": 20,
+      "format": "{icon} {capacity}%",
+      "format-charging": " {capacity}%",
+      "format-icons": ["󱊡", "󱊢", "󱊣"]
+    },
+
     "memory": {
         "interval": 30,
         "format": "󰾆 {percentage}%",
@@ -61,12 +75,15 @@
 
 // right modules // 
 
-"custom/updater":{
-    "format": "󰮯 {}",
-        "exec": "~/.config/hypr/scripts/systemupdate",
-        "on-click": "~/.config/hypr/scripts/systemupdate up",
-        "interval": 86400, // once every day
-        "tooltip": true
+  "backlight": {
+    "interval": 30,
+    "align": 0,
+    "rotate": 0,
+     "format": "{icon}{percent}%",
+      "format-icons": ["󱩎 ", "󱩏 ", "󱩐 ", "󱩑 ", "󱩒 ", "󱩓 ", "󱩔 ", "󱩕 ", "󱩖 ", "󰛨 "],
+      "on-scroll-up": "~/.config/hypr/scripts/brightness --inc",
+      "on-scroll-down": "~/.config/hypr/scripts/brightness --dec",
+      "smooth-scrolling-threshold": 1,
     },
 
 "network": {
