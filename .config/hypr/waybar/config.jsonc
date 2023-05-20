@@ -1,0 +1,13 @@
+{
+    "include": "~/.config/hypr/waybar/modules",
+    "layer": "top",
+    "position": "top",
+    "mod": "dock",
+    "height": 28,
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "modules-left": ["cpu","memory","clock"],
+    "modules-center": ["wlr/workspaces","hyprland/window"],
+    "modules-right": ["custom/updater","network","bluetooth","pulseaudio","pulseaudio#microphone","tray","custom/power"]
+}

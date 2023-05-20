@@ -1,0 +1,19 @@
+#!/bin/bash
+
+LAYOUT="$HOME/.config/hypr/wlogout/layout"
+STYLE="$HOME/.config/hypr/wlogout/style.css"
+
+if [[ ! $(pidof wlogout) ]]; then
+wlogout --css ${STYLE} --layout ${LAYOUT} \
+    --buttons-per-row 2 \
+    --column-spacing 0 \
+    --row-spacing 0 \
+    --margin-top 300 \
+    --margin-bottom 300 \
+    --margin-left 630 \
+    --margin-right 630 \
+    --protocol layer-shell
+ else
+	 pkill wlogout
+fi
+

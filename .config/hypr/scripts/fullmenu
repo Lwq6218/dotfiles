@@ -1,0 +1,7 @@
+#!/bin/bash
+
+CONFIG="$HOME/.config/hypr/swaylock/config"
+
+if [[ ! $(pidof swaylock) ]]; then
+	swaylock --config ${CONFIG}
+end
