@@ -1,0 +1,268 @@
+palette = "catppuccin_mocha"
+add_newline = false
+"$schema" = "https://starship.rs/config-schema.json"
+
+format = """
+$directory\
+${custom.git_url}\
+${custom.git_host}\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$git_metrics\
+$hg_branch\
+\n$os\
+$character
+"""
+
+right_format = "$cmd_duration"
+
+[fill]
+symbol = " "
+
+[os]
+format = "[$symbol]($style)"
+style = "bold blue"
+disabled = false
+
+[character]
+success_symbol = "[](green)"
+error_symbol = "[](red)"
+vicmd_symbol = "[](green)"
+
+[directory]
+style = "bold blue"
+read_only = " "
+truncation_length = 4
+truncate_to_repo = false
+truncation_symbol = "…/"
+use_os_path_sep = false
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+"Trash" = "󰩹 "
+"Desktop" = "󰢹 "
+"Videos" = " "
+"Templates" = " "
+".config" = ""
+".cache" = "󰃨 "
+"home" = " "
+"~" = " ~"
+
+[hg_branch]
+style = 'green'
+
+[git_branch]
+symbol = ' '
+style = 'green'
+
+[git_commit]
+commit_hash_length = 8
+tag_disabled = false
+tag_symbol = '  '
+style = 'peach'
+
+[git_state]
+style = 'peach'
+format = '[\($state( $progress_current of $progress_total)\)]($style) '
+
+[git_metrics]
+added_style = 'peach'
+deleted_style = 'peach'
+disabled = false
+
+[git_status]
+format = '([$all_status$ahead_behind]($style))'
+style = 'green'
+ahead = '⇡${count} '
+behind = '⇣${count} '
+diverged = '⇕⇡${ahead_count}⇣${behind_count} '
+conflicted = '!! '
+modified = '[!${count}](yellow) '
+deleted = '[×${count}](red) '
+staged = '[+${count}](lavender) '
+untracked = '[?${count}](blue) '
+renamed = '[»${count}](pink) '
+stashed = '*${count} '
+
+[cmd_duration]
+format = '[ ﮫ $duration]($style)'
+style = 'yellow'
+min_time = 2000
+
+[custom.git_host]
+command = """
+GIT_REMOTE=$(command git ls-remote --get-url 2> /dev/null)
+if [[ "$GIT_REMOTE" =~ "github" ]]; then
+    GIT_REMOTE_SYMBOL=" "
+elif [[ "$GIT_REMOTE" =~ "gitlab" ]]; then
+    GIT_REMOTE_SYMBOL=" "
+elif [[ "$GIT_REMOTE" =~ "bitbucket" ]]; then
+    GIT_REMOTE_SYMBOL=" "
+elif [[ "$GIT_REMOTE" =~ "git" ]]; then
+    GIT_REMOTE_SYMBOL=" "
+else
+    GIT_REMOTE_SYMBOL=" "
+fi
+echo "$GIT_REMOTE_SYMBOL "
+"""
+when = 'git rev-parse --is-inside-work-tree 2> /dev/null'
+format = "at $output  "
+
+[status]
+style = 'yellow'
+
+
+[palettes.catppuccin_mocha]
+rosewater = "#f5e0dc"
+flamingo = "#f2cdcd"
+pink = "#f5c2e7"
+mauve = "#cba6f7"
+red = "#f38ba8"
+maroon = "#eba0ac"
+peach = "#fab387"
+yellow = "#f9e2af"
+green = "#a6e3a1"
+teal = "#94e2d5"
+sky = "#89dceb"
+sapphire = "#74c7ec"
+blue = "#89b4fa"
+lavender = "#b4befe"
+text = "#cdd6f4"
+subtext1 = "#bac2de"
+subtext0 = "#a6adc8"
+overlay2 = "#9399b2"
+overlay1 = "#7f849c"
+overlay0 = "#6c7086"
+surface2 = "#585b70"
+surface1 = "#45475a"
+surface0 = "#313244"
+base = "#1e1e2e"
+mantle = "#181825"
+crust = "#11111b"
+
+# nerd font symbols
+[aws]
+symbol = "  "
+
+[buf]
+symbol = " "
+
+[c]
+symbol = " "
+
+[conda]
+symbol = " "
+
+[dart]
+symbol = " "
+
+[docker_context]
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[golang]
+symbol = " "
+
+[guix_shell]
+symbol = " "
+
+[haskell]
+symbol = " "
+
+[haxe]
+symbol = "⌘ "
+
+[java]
+symbol = " "
+
+[julia]
+symbol = " "
+
+[lua]
+symbol = " "
+
+[memory_usage]
+symbol = "󰍛 "
+
+[meson]
+symbol = "喝 "
+
+[nim]
+symbol = " "
+
+[nix_shell]
+symbol = " "
+
+[nodejs]
+symbol = " "
+
+[os.symbols]
+Alpine = " "
+Amazon = " "
+Android = " "
+Arch = " "
+CentOS = " "
+Debian = " "
+DragonFly = " "
+Emscripten = " "
+EndeavourOS = " "
+Fedora = " "
+FreeBSD = " "
+Gentoo = " "
+HardenedBSD = "ﲊ "
+Illumos = " "
+Linux = " "
+Macos = " "
+Manjaro = " "
+Mariner = " "
+MidnightBSD = " "
+Mint = " "
+NetBSD = " "
+NixOS = " "
+OpenBSD = " "
+openSUSE = " "
+OracleLinux = " "
+Pop = " "
+Raspbian = " "
+Redhat = " "
+RedHatEnterprise = " "
+Redox = " "
+Solus = "ﴱ "
+SUSE = " "
+Ubuntu = " "
+Unknown = " "
+Windows = " "
+
+[package]
+symbol = "󰏓 "
+
+[pijul_channel]
+symbol = "🪺 "
+
+[python]
+symbol = " "
+
+[rlang]
+symbol = "ﳒ "
+
+[ruby]
+symbol = " "
+
+[rust]
+symbol = " "
+
+[scala]
+symbol = " "
+
+[spack]
+symbol = "🅢 "
