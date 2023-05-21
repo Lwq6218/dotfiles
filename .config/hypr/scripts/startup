@@ -9,6 +9,8 @@ for _prs in "${_ps[@]}"; do
 		killall -9 ${_prs}
 	fi
 done
+# Apply themes
+${SCRIPTSDIR}/gtkthemes &
 
 # Lauch statusbar (waybar)
 ${SCRIPTSDIR}/statusbar &

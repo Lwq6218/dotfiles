@@ -21,7 +21,18 @@
       "format-charging": " {capacity}%",
       "format-icons": ["󱊡", "󱊢", "󱊣"]
     },
-
+"mpris": {
+	"format": "DEFAULT: {player_icon} {dynamic}",
+	"format-paused": "{status_icon} <i>{dynamic}</i>",
+	"player-icons": {
+		"default": "⏸",
+		"mpv": "🎵"
+	},
+	"status-icons": {
+		"paused": "▶"
+	},
+	"ignored-players": ["firefox"]
+},
     "memory": {
         "interval": 30,
         "format": "󰾆 {percentage}%",

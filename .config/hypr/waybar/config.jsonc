@@ -7,7 +7,7 @@
     "exclusive": true,
     "passthrough": false,
     "gtk-layer-shell": true,
-    "modules-left": ["cpu","battery","memory","clock"],
+    "modules-left": ["cpu","battery","mpris","memory","clock"],
     "modules-center": ["wlr/workspaces","hyprland/window"],
     "modules-right": ["backlight","network","bluetooth","pulseaudio","pulseaudio#microphone","tray","custom/power"]
 }
