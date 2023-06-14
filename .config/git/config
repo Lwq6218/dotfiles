@@ -1,0 +1,7 @@
+[user]
+	name = lwq
+	email = lwq6218@gmail.com
+[core]
+	editor = nvim
+[init]
+	defaultBranch = main
