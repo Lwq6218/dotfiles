@@ -1,0 +1,237 @@
+{
+  "layer": "top",
+  "position": "left",
+  "mod": "dock",
+  "exclusive": true,
+  "passthrough": false,
+  "gtk-layer-shell": true,
+  "reload_style_on_change": true,
+  "margin-top": 4,
+  "margin-bottom": 4,
+  "margin-left": 4,
+  "margin-right": 0,
+
+  "modules-left": [
+    "custom/launch_rofi",
+    "clock",
+    "network",
+    "idle_inhibitor",
+    "group/group-menu",
+    "custom/dots",
+  ],
+
+  "modules-center": ["hyprland/workspaces"],
+
+  "modules-right": [
+    "custom/dots",
+    "tray",
+    // "battery",
+    // "backlight",
+    "backlight/slider",
+    "backlight",
+    "pulseaudio/slider",
+    "pulseaudio#audio",
+    "custom/power",
+  ],
+  "custom/launch_rofi": {
+    "format": "",
+    "on-click": "~/.config/rofi/launcher.sh",
+    "on-click-right": "kitty --title yazi -e yazi",
+    "tooltip": true,
+    "tooltip-format": "Left Click: Launch Rofi\nRight Click: Launch yazi",
+  },
+
+  "network": {
+    "format": "{icon}",
+    "format-ethernet": "󰌘",
+    "tooltip-format": "Network: <big><b>{essid}</b></big>\nSignal strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>",
+    "format-linked": "󰈀 {ifname} (No IP)",
+    "format-disconnected": "󰖪",
+    "tooltip-format-disconnected": "Disconnected",
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    "on-click-right": "kitty -e nmtui",
+  },
+
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": "󰛊",
+    },
+    "tooltip-format-activated": "Caffeine Mode: Active \nNothing will be happen.",
+    "tooltip-format-deactivated": "Caffeine Mode: Inactive\n\nIf there is no interaction with your\nsystem (mouse/keyboard), then \nScreen Lock: after 5 min \nScreen Off: after 10 min \nSleep: after 30 min",
+  },
+
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "on-click": "activate",
+    "on-scroll-up": "hyprctl dispatch workspace e-1",
+    "on-scroll-down": "hyprctl dispatch workspace e+1",
+    "format": "{icon}",
+    "format-icons": {
+      "default": "",
+    },
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+    },
+  },
+
+  "tray": {
+    "icon-size": 15,
+    "spacing": 10,
+  },
+
+  // clock
+  "clock": {
+    "format": "{:%I\n%M\n%p}",
+    "format-alt": "{:%H\n%M}",
+    "tooltip": true,
+    "tooltip-format": "<span>{calendar}</span>",
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 3,
+      "on-scroll": 1,
+      "on-click-right": "mode",
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b>{}</b></span>",
+      },
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-click-forward": "tz_up",
+      "on-click-backward": "tz_down",
+      "on-scroll-up": "shift_down",
+      "on-scroll-down": "shift_up",
+    },
+  },
+
+  "battery": {
+    "full-at": 100,
+    "design-capacity": false,
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15,
+    },
+    "format": "<span>{icon}</span>\n<span>{capacity}%</span>",
+    "format-charging": "<span></span>\n<span>{capacity}%</span>",
+    "format-plugged": "󱘖 \n{capacity}%",
+    "format-alt-click": "click",
+    "format-full": "{icon}\nFull",
+    "format-alt": "{icon}\n{time}",
+    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    "format-time": "{H}h {M}min",
+    "tooltip": true,
+    "tooltip-format": "{timeTo} {power}w",
+  },
+  "backlight": {
+    "device": "intel_backlight",
+    "rotate": 0,
+    "format": "{icon}",
+    "format-icons": ["", "", "", "", "", "", "", "", ""],
+    "tooltip-format": "{icon} {percent}% ",
+    "min-length": 6,
+  },
+
+  "backlight/slider": {
+    "min": 0,
+    "max": 100,
+    "on-scroll-up": "~/.config/hypr/scripts/brightnesscontrol.sh i 1",
+    "on-scroll-down": "~/.config/hypr/scripts/brightnesscontrol.sh d 1",
+    "min-length": 6,
+    "orientation": "vertical",
+  },
+
+  "pulseaudio/slider": {
+    "min": 0,
+    "max": 100,
+    "on-scroll-up": "wpctl set-volume -l 1.3 @DEFAULT_SINK@ 5%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_SINK@ 5%-",
+    "orientation": "vertical",
+  },
+
+  "pulseaudio#audio": {
+    "format": "{icon}",
+    "format-muted": "",
+    "on-click": "pavucontrol",
+    "format-icons": {
+      "headphone": "󱡏",
+      "hands-free": "󱡏",
+      "headset": "󱡏",
+      "default": ["", " "],
+    },
+  },
+
+  "group/group-menu": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 500,
+      "children-class": "not-power",
+      "transition-left-to-right": true,
+    },
+    "modules": [
+      "custom/menu",
+      "custom/wallpaper",
+      "custom/screenshot",
+      "custom/color-picker",
+      "custom/wbar",
+      "custom/record",
+    ],
+  },
+
+  "custom/menu": {
+    "format": "{}",
+    "tooltip": false,
+  },
+  "custom/record": {
+    "exec": "~/.config/hypr/scripts/screenrecord.sh status",
+    "format": "{}",
+    "on-click": "~/.config/hypr/scripts/screenrecord.sh toggle fullscreen",
+    "on-click-right": "~/.config/hypr/scripts/screenrecord.sh toggle region",
+    "interval": "once",
+    "signal": 1,
+    "return-type": "json",
+    "tooltip": true,
+  },
+
+  "custom/wbar": {
+    "format": "{}",
+    "rotate": 0,
+    "exec": "echo ; echo  switch bar",
+    "on-click": "~/.config/hypr/scripts/waybarswitch.sh",
+    "interval": 86400,
+    "tooltip": true,
+  },
+  "custom/color-picker": {
+    "format": "",
+    "on-click": "hyprpicker -an",
+    "tooltip-format": "color picker",
+  },
+  "custom/screenshot": {
+    "format": "",
+    "on-click": "~/.config/hypr/scripts/screenshot.sh --now",
+    "on-click-right": "~/.config/hypr/scripts/screenshot.sh --area",
+    "tooltip-format": "Left-click:  Full Screen Screenshot\nRight-click: Area Screenshot",
+  },
+  "custom/wallpaper": {
+    "format": "󰸉",
+    "on-click": "~/.config/rofi/wallselect.sh",
+    "tooltip-format": "select wallpaper",
+  },
+  "custom/power": {
+    "format": "",
+    "tooltip-format": "Poweroff",
+    "on-click": "~/.config/rofi/powermenu.sh",
+  },
+
+  "custom/dots": {
+    "format": "",
+    "tooltip": false,
+    "rotate": 90,
+  },
+}

@@ -1,0 +1,211 @@
+* {
+  border: none;
+  border-radius: 0;
+  font-family: "Maple Mono NF CN";
+  font-weight: 800;
+  font-size: 8.5pt;
+}
+
+#waybar.left {
+  background-color: #0a0d0f;
+  border-radius: 4pt;
+}
+
+#waybar.left > box.vertical {
+  background: #0a0d0f;
+  box-shadow: 0 0 4pt #0a0d0f;
+  margin: 4pt 0pt;
+  padding: 2pt 0pt;
+}
+tooltip {
+  background: #0a0d0f;
+  opacity: 1;
+  border-radius: 4pt;
+}
+
+#workspaces {
+  border-radius: 15pt;
+}
+
+#workspaces button {
+  color: #585b70;
+}
+
+#workspaces button.active {
+  color: #7aa2f7;
+}
+
+#workspaces button.focused {
+  color: #bb9af7;
+}
+
+#workspaces button.urgent {
+  color: #11111b;
+}
+
+#workspaces button:hover {
+  color: #d9d9d9;
+}
+
+#network {
+  color: #b595dd;
+  font-size: 12pt;
+  margin-right: 4pt;
+}
+
+#idle_inhibitor {
+  color: #8f7389;
+  font-size: 12pt;
+  margin-right: 2pt;
+}
+
+#battery {
+  color: #a6e3a1;
+  font-size: 10pt;
+}
+
+@keyframes blink {
+  to {
+    background-color: #ffffff;
+    color: #333333;
+  }
+}
+
+#battery.critical:not(.charging) {
+  color: #f53c3c;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#custom-menu {
+  margin-top: 10pt;
+  font-size: 11pt;
+  margin-right: 4pt;
+}
+#custom-record {
+  margin-right: 3pt;
+  margin-top: 10pt;
+  font-size: 10pt;
+}
+#custom-wbar {
+  margin-right: 3pt;
+  margin-top: 10pt;
+  font-size: 10pt;
+}
+#custom-color-picker {
+  margin-right: 3pt;
+  margin-top: 10pt;
+  font-size: 9pt;
+}
+
+#custom-screenshot {
+  margin-right: 3pt;
+  margin-top: 10pt;
+  font-size: 10pt;
+}
+#custom-wallpaper {
+  margin-right: 3pt;
+  margin-top: 10pt;
+  font-size: 12pt;
+}
+#custom-power {
+  color: #c47189;
+  margin-top: 4pt;
+  margin-bottom: 2pt;
+  margin-right: 4pt;
+  font-size: 14pt;
+}
+
+#tray {
+  margin-bottom: 10pt;
+  margin-top: 10pt;
+}
+#tray menu {
+  background: #1e1e2e;
+  padding: 2pt;
+}
+#tray menu * {
+  margin: 2pt;
+}
+#tray menu check {
+  margin-bottom: 4pt;
+}
+
+#custom-launch_rofi {
+  color: #89b4fa;
+  font-size: 12pt;
+}
+
+#pulseaudio-slider {
+  margin-top: 10pt;
+}
+
+#pulseaudio {
+  font-size: 10pt;
+  margin-top: 2pt;
+}
+
+#pulseaudio-slider slider {
+  min-height: 4pt;
+  min-width: 10pt;
+  opacity: 0;
+  background-color: #cdd6f4;
+  border-radius: 3pt;
+  box-shadow: none;
+}
+
+#pulseaudio-slider trough {
+  min-height: 80pt;
+  min-width: 4pt;
+  border-radius: 5pt;
+  background-color: #313244;
+}
+
+#pulseaudio-slider highlight {
+  min-width: 5pt;
+  border-radius: 5pt;
+  background-color: #89b4fa;
+}
+
+#backlight {
+  margin-top: 2pt;
+}
+
+#backlight-slider {
+  margin-top: 10pt;
+}
+
+#backlight-slider slider {
+  min-height: 4pt;
+  min-width: 10pt;
+  opacity: 0;
+  background-color: #cdd6f4;
+  border-radius: 3pt;
+  box-shadow: none;
+}
+
+#backlight-slider trough {
+  min-height: 80pt;
+  min-width: 4pt;
+  border-radius: 5pt;
+  background-color: white;
+}
+
+#backlight-slider highlight {
+  min-width: 5pt;
+  border-radius: 5pt;
+  background-color: #c47189;
+}
+
+#clock {
+  margin-top: 10pt;
+  font-size: 12px;
+}
+
+#custom-dots {
+  color: #3e677a;
+  font-size: 15pt;
+}

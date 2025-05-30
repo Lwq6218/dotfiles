@@ -1,0 +1,6 @@
+Host alyserver
+    User root
+    HostName 119.23.145.112
+    IdentityFile ~/.ssh/id_rsa
+    # RequestTTY yes
+    # RemoteCommand tmux new -A -s default
