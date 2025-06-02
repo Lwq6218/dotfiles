@@ -9,6 +9,9 @@ PURPLE='\033[0;35m'
 CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 
+# 备份目录
+BACKUP_DIR="$HOME/backup/dotfiles_bak"
+
 # 日志函数
 log() {
   echo -e "${BLUE}[INFO]${NC} $1"
@@ -62,15 +65,18 @@ create_symlink() {
 
   # 检查目标是否已存在
   if [ -e "$dest" ] || [ -L "$dest" ]; then
-    # 备份现有文件/目录
-    local backup="${dest}.bak"
-    # 如果备份文件已存在，添加时间戳
-    if [ -e "$backup" ] || [ -L "$backup" ]; then
-      backup="${dest}.bak.$(date +%Y%m%d%H%M%S)"
-    fi
+    # 创建备份目录（如果不存在）
+    mkdir -p "$BACKUP_DIR"
 
-    mv "$dest" "$backup"
-    success "Backed up $dest → $backup"
+    # 创建基于目标文件路径的备份路径
+    local rel_path="${dest#/}"   # 去掉开头的斜杠
+    rel_path="${rel_path//\//_}" # 将路径中的斜杠替换为下划线
+
+    # 备份现有文件/目录
+    local backup_file="${BACKUP_DIR}/${rel_path}.$(date +%Y%m%d%H%M%S)"
+
+    mv "$dest" "$backup_file"
+    success "Backed up $dest → $backup_file"
   fi
 
   # 创建软链接
@@ -164,7 +170,7 @@ install_packages() {
     # 终端实用工具
     "curl" "wget" "zsh" "fish" "bat" "starship" "fastfetch" "lazygit" "neovim"
     "nodejs" "go" "pnpm" "ffmpeg" "p7zip" "jq" "poppler" "fd" "ripgrep"
-    "fzf" "zoxide" "imagemagick" "unzip" "resvg" "yazi" "tmux"
+    "fzf" "zoxide" "imagemagick" "unzip" "resvg" "yazi" "tmux" "less"
   )
 
   # 完整安装的软件包列表 (包括桌面环境)
@@ -179,7 +185,7 @@ install_packages() {
     # 窗口管理和桌面环境
     "hyprland" "hypridle" "swww" "xdg-desktop-portal-hyprland" "xdg-desktop-portal-gtk"
     "archlinux-xdg-menu" "waybar" "rofi-wayland" "dunst" "cliphist" "wl-clipboard" "wf-recorder"
-    "uwsm" "hyprlock" "hyprpicker" "hyprpolkitagent" "nwg-displays"
+    "uwsm" "hyprlock" "hyprpicker" "hyprpolkitagent" "nwg-displays" "bc"
 
     # 网络和蓝牙
     "blueman" "bluez" "bluez-utils" "network-manager-applet"
@@ -353,6 +359,10 @@ link_dotfiles() {
 # 主函数
 main() {
   print_header
+
+  # 创建备份目录
+  mkdir -p "$BACKUP_DIR"
+  log "Backup directory created at: $BACKUP_DIR"
 
   # 检查是否为Arch Linux
   if [ ! -f /etc/arch-release ]; then
