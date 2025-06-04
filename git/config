@@ -1,5 +1,77 @@
 [user]
 	name = lwq6218
 	email = lwq6218@gmail.com
+
+[commit]
+    template = ~/.config/git/template
+[core]
+  compression = 9
+  whitespace = erorr
+
+[advice]
+  addEmptyPathsepc = false
+  pushNonFastForward = false
+  statusHints = false
+
+[log]
+  abbrevCommit = true  # short commits
+  graphColors = blue,yellow,cyan,magenta,green,red
+
+[status]
+  branch = true
+  showStash = true
+  showUntrackedFiles = all
+
+[push]
+  autoSetupRemote = true
+  default = current
+
+[pull]
+  default = current
+
+[blame]
+    coloring = highlightRecent
+    date = relative
+
+[diff]
+  context = 3
+  renames = copies
+  interHunkContext = 10
+
+[pager]
+  branch = false  # no need to use pager for git branch
+  diff = diff-so-fancy | $PAGER
+
+[interactive]
+  diffFilter = diff-so-fancy --path
+  singlekey = true
+
+[diff-so-fancy]
+  markEmptyLines = false
+
+[color "blame"]
+    highlightRecent = black bold,1 year ago,white,1 month ago,default,7 days ago,blue
+
+[color "branch"]
+    current  = magenta
+    local    = default
+    remote   = yellow
+    upstream = green
+    plain    = blue
+
+[color "diff"]
+  meta          = black bold
+  falg          = magenta
+  context       = white
+  whitespace    = yellow reverse
+  old           = red
+
+[url "git@github.com:Lwq6218/"]
+  insteadOf = "lwq:"
+
+[url "git@github.com:"]
+  insteadOf = "gh:"
+
+
 [init]
 	defaultBranch = main
