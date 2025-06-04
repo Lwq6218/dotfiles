@@ -3,3 +3,4 @@ ssh/id_rsa
 ssh/known_honsts 
 ssh/known_hosts.old
 hypr/monitors.conf
+yazi/*.toml-[0-9]*
