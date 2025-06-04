@@ -2,7 +2,6 @@ return {
   ---@class tokyonight.Config
   {
     "folke/tokyonight.nvim",
-    enabled = true,
     lazy = false,
     priority = 1000,
     opts = {
@@ -34,16 +33,16 @@ return {
         hl.WinBarNC = {
           link = c.back,
         }
-        hl.NornalNC = {
-
-        }
+        hl.NornalNC = {}
       end,
     },
+    init = function()
+      vim.cmd [[colorscheme tokyonight]]
+    end,
   },
 
   {
     "folke/noice.nvim",
-    enabled = true,
     keys = { ":", "/", "?" }, -- lazy load cmp on more keys along with insert mode
     opts = {
       views = {

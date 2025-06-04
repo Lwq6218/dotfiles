@@ -2,7 +2,7 @@ return {
   {
     "saghen/blink.cmp",
     event = "InsertEnter",
-    dependencies = { "rafamadriz/friendly-snippets", "giuxtaposition/blink-cmp-copilot" },
+    dependencies = { "rafamadriz/friendly-snippets" },
     version = "1.*",
     config = function()
       require "config.cmp"

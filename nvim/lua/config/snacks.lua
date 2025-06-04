@@ -6,7 +6,7 @@ local function term_nav(dir)
       vim.cmd.wincmd(dir)
     end)
   end
-end
+end 
 require("snacks").setup {
   notifier = { enabled = true, reflesh = 120, margin = { top = 5, right = 2, bottom = 0 } },
   bigfile = { enabled = true },

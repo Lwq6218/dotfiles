@@ -1,13 +1,5 @@
 return {
   {
-    "neovim/nvim-lspconfig",
-    event = "User FilePost",
-    config = function()
-      return require "config.lsp"
-    end,
-  },
-
-  {
     "mason-org/mason.nvim",
     event = "User FilePost",
     cmd = { "Mason", "MasonInstall", "MasonUpdate" },

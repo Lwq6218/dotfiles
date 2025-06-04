@@ -3,12 +3,11 @@
 
 local PACKAGES = {
   -- LSP
-  "css-lsp",
-  "html-lsp",
   "json-lsp",
   "vtsls",
   "gopls",
   "lua-language-server",
+  "bash-language-server",
   -- Format
   "goimports",
   "gofumpt",

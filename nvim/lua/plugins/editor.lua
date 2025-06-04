@@ -90,14 +90,6 @@ return {
     { "<leader>sR", function() Snacks.picker.resume() end, desc = "Resume" },
     { "<leader>su", function() Snacks.picker.undo() end, desc = "Undo History" },
     { "<leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
-    -- LSP
-    { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
-    { "gD", function() Snacks.picker.lsp_declarations() end, desc = "Goto Declaration" },
-    { "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
-    { "gI", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
-    { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
-    { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
-    { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
     -- Other
     { "<leader>z",  function() Snacks.zen() end, desc = "Toggle Zen Mode" },
     { "<leader>Z",  function() Snacks.zen.zoom() end, desc = "Toggle Zoom" },
@@ -188,13 +180,40 @@ return {
           })
         end,
       })
+
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "VeryLazy",
+        callback = function()
+          -- Setup some globals for debugging (lazy-loaded)
+          _G.dd = function(...)
+            Snacks.debug.inspect(...)
+          end
+          _G.bt = function()
+            Snacks.debug.backtrace()
+          end
+          vim.print = _G.dd -- Override print to use snacks for `:=` command
+          -- Create some toggle mappings
+          Snacks.toggle.option("spell", { name = "Spelling" }):map "<leader>ts"
+          Snacks.toggle.option("wrap", { name = "Wrap" }):map "<leader>tw"
+          Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map "<leader>tL"
+          Snacks.toggle.diagnostics():map "<leader>td"
+          Snacks.toggle.line_number():map "<leader>tl"
+          Snacks.toggle
+            .option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
+            :map "<leader>tc"
+          Snacks.toggle.treesitter():map "<leader>tT"
+          Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map "<leader>tb"
+          Snacks.toggle.inlay_hints():map "<leader>th"
+          Snacks.toggle.indent():map "<leader>tg"
+          Snacks.toggle.dim():map "<leader>tD"
+        end,
+      })
     end,
   },
 
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
-    enabled = true,
     opts = {
       preset = "helix",
       spec = {
@@ -202,11 +221,12 @@ return {
           mode = { "n", "v" },
           { "<leader>f", group = "file/find" },
           { "<leader>s", group = "search" },
-          { "<leader>h", group = "hunks" },
           { "<leader>c", group = "code" },
+          { "<leader>t", group = "toggle" },
+          { "<leader>g", group = "git" },
+          { "<leader>h", group = "hunks" },
           { "<leader>d", group = "debug" },
           { "<leader>dp", group = "profiler" },
-          { "<leader>g", group = "git" },
           { "<leader>q", group = "quit/session" },
           { "<leader>u", group = "ui", icon = { icon = "󰙵 ", color = "cyan" } },
           { "<leader>x", group = "diagnostics/quickfix", icon = { icon = "󱖫 ", color = "green" } },
@@ -285,7 +305,6 @@ return {
   {
     "b0o/incline.nvim",
     event = { "BufReadPost", "BufNewFile" },
-    enabled = true,
     config = function()
       local devicons = require "nvim-web-devicons"
       require("incline").setup {
@@ -608,14 +627,14 @@ return {
       map("n", "[H", function() gs.nav_hunk("first") end, "First Hunk")
       map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
       map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
-      map("n", "<leader>ghS", gs.stage_buffer, "Stage Buffer")
-      map("n", "<leader>ghu", gs.undo_stage_hunk, "Undo Stage Hunk")
-      map("n", "<leader>ghR", gs.reset_buffer, "Reset Buffer")
-      map("n", "<leader>ghp", gs.preview_hunk_inline, "Preview Hunk Inline")
-      map("n", "<leader>ghb", function() gs.blame_line({ full = true }) end, "Blame Line")
-      map("n", "<leader>ghB", function() gs.blame() end, "Blame Buffer")
-      map("n", "<leader>ghd", gs.diffthis, "Diff This")
-      map("n", "<leader>ghD", function() gs.diffthis("~") end, "Diff This ~")
+      map("n", "<leader>hS", gs.stage_buffer, "Stage Buffer")
+      map("n", "<leader>hu", gs.undo_stage_hunk, "Undo Stage Hunk")
+      map("n", "<leader>hR", gs.reset_buffer, "Reset Buffer")
+      map("n", "<leader>hp", gs.preview_hunk_inline, "Preview Hunk Inline")
+      map("n", "<leader>hb", function() gs.blame_line({ full = true }) end, "Blame Line")
+      map("n", "<leader>hB", function() gs.blame() end, "Blame Buffer")
+      map("n", "<leader>hd", gs.diffthis, "Diff This")
+      map("n", "<leader>hD", function() gs.diffthis("~") end, "Diff This ~")
       map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
       end,
     },

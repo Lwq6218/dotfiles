@@ -1,11 +1,8 @@
-vim.loader.enable()
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
 require "options"
 require "autocmds"
 require "commands"
 require "keymaps"
+require "lspconfig"
 
 -- Neovide
 if vim.g.neovide then
@@ -100,5 +97,3 @@ require("lazy").setup({
     },
   },
 })
-
-vim.cmd [[colorscheme tokyonight]]
