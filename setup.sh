@@ -170,7 +170,7 @@ install_packages() {
     # 终端实用工具
     "curl" "wget" "zsh" "fish" "bat" "starship" "fastfetch" "lazygit" "neovim"
     "nodejs" "go" "pnpm" "ffmpeg" "p7zip" "jq" "poppler" "fd" "ripgrep"
-    "fzf" "zoxide" "imagemagick" "unzip" "resvg" "yazi" "tmux" "less"
+    "fzf" "zoxide" "imagemagick" "unzip" "resvg" "yazi" "tmux" "less" "eza"
   )
 
   # 完整安装的软件包列表 (包括桌面环境)
