@@ -2,6 +2,14 @@ local function augroup(name)
   return vim.api.nvim_create_augroup("hypr_" .. name, { clear = true })
 end
 
+vim.api.nvim_create_augroup("RestoreCursorShapeOnExit", { clear = true })
+vim.api.nvim_create_autocmd("VimLeave", {
+  group = "RestoreCursorShapeOnExit",
+  callback = function()
+    vim.opt.guicursor = "a:ver25"
+    -- vim.opt.guicursor = ""
+  end,
+})
 -- user event that loads after UIEnter + only if file buf is there
 vim.api.nvim_create_autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
   group = vim.api.nvim_create_augroup("NvFilePost", { clear = true }),

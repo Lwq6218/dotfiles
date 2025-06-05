@@ -3,7 +3,6 @@ require "autocmds"
 require "commands"
 require "keymaps"
 require "lspconfig"
-
 -- Neovide
 if vim.g.neovide then
   vim.opt.guifont = "Maple Mono NF CN:h10.5"
@@ -25,8 +24,8 @@ if vim.fn.has "wsl" == 1 then
       ["*"] = "clip.exe",
     },
     paste = {
-      ["+"] = 'pwsh.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-      ["*"] = 'pwsh.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+      ["+"] = 'powershell.exe -c [Console]::OutputEncoding = [System.Text.Encoding]::UTF8; [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+      ["*"] = 'powershell.exe -c [Console]::OutputEncoding = [System.Text.Encoding]::UTF8; [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
     },
     cache_enabled = 0,
   }

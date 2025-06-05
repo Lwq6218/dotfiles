@@ -46,6 +46,9 @@ function _G.custom_foldtext()
 end
 vim.opt.foldtext = "v:lua.custom_foldtext()"
 -------------------------------------- options ------------------------------------------
+
+o.encoding = "utf-8"
+o.fileencoding = "utf-8"
 g.mapleader = " "
 g.maplocalleader = " "
 opt.signcolumn = "auto"
